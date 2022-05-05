@@ -51,10 +51,6 @@ public class CoffeeMachine {
         BUY, FILL, TAKE, REMAINING, EXIT, IDLE
     }
 
-    private Action currentAction;
-
-    private Scanner scanner;
-
     public CoffeeMachine() {
         CoffeeType espresso = new CoffeeType("espresso", 250, 0, 16, 4);
         CoffeeType latte = new CoffeeType("latte", 350, 75, 20, 7);
@@ -64,22 +60,23 @@ public class CoffeeMachine {
         this.coffeeTypes.add(latte);
         this.coffeeTypes.add(cappuccino);
 
-        this.scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
+        Action currentAction;
         do {
-            this.currentAction = Action.IDLE;
+            currentAction = Action.IDLE;
             this.displayActions();
 
-            String str = this.scanner.next();
+            String str = scanner.next();
 
             for (Action state : Action.values()) {
                 if (state.name().equalsIgnoreCase(str)) {
-                    this.currentAction = state;
+                    currentAction = state;
                     break;
                 }
             }
 
-            switch (this.currentAction) {
+            switch (currentAction) {
                 case BUY:
                     this.buyMenu(scanner);
                     break;
@@ -95,7 +92,7 @@ public class CoffeeMachine {
                 default:  // nothing
                     break;
             }
-        } while (!this.currentAction.equals(Action.EXIT));
+        } while (!currentAction.equals(Action.EXIT));
     }
 
     public static void main(String[] args) {
