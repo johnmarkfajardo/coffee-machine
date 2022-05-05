@@ -1,2 +1,2 @@
 # Coffee Machine
-A beginner project I completed in JetBrains Academy / Hyperskill 
+A beginner project I completed in JetBrains Academy / hperskill.org 
